@@ -1,0 +1,27 @@
+{
+    "name": "exceptio/laravel-sonali-payment",
+    "description": "Sonali Payment Package For Laravel Framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Exception Solutions",
+            "email": "azc.pavel@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.5",
+        "guzzlehttp/guzzle": ">=7.7",
+    },
+    "autoload": {
+        "psr-4": {
+            "Exceptio\\SonaliPayment\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Exceptio\\SonaliPayment\\SonaliPaymentServiceProvider"
+            ]
+        }
+    }
+}
