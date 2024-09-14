@@ -1,4 +1,4 @@
-# Sonali Payment For For Laravel
+# Sonali Payment For Laravel
 
 A simple package for handling Sonali Bank Payment in Laravel.
 
