@@ -54,8 +54,8 @@ class CreditInformationDto {
 
     private function setCrAccountOrChallanNo(string $crAccountOrChallanNo): void {        
         // Check length limit if provided
-        if ($crAccountOrChallanNo !== null && strlen($crAccountOrChallanNo) > 26) {
-            throw new InvalidArgumentException('CrAccountOrChallanNo must be less than or equal to 26 characters.');
+        if ($crAccountOrChallanNo !== null && (strlen($crAccountOrChallanNo) < 13 || strlen($crAccountOrChallanNo) > 26)) {
+            throw new InvalidArgumentException('CrAccountOrChallanNo must be greater than or 13 and less than or equal to 26 characters.');
         }
         $this->crAccountOrChallanNo = $crAccountOrChallanNo;
     }
