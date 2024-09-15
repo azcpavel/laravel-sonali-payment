@@ -52,8 +52,11 @@ class CreditInformationDto {
         $this->serialNo = $serialNo;
     }
 
-    private function setCrAccountOrChallanNo(string $crAccountOrChallanNo): void {
-        // Validate if needed
+    private function setCrAccountOrChallanNo(string $crAccountOrChallanNo): void {        
+        // Check length limit if provided
+        if ($crAccountOrChallanNo !== null && strlen($crAccountOrChallanNo) > 26) {
+            throw new InvalidArgumentException('CrAccountOrChallanNo must be less than or equal to 26 characters.');
+        }
         $this->crAccountOrChallanNo = $crAccountOrChallanNo;
     }
 
@@ -63,12 +66,18 @@ class CreditInformationDto {
     }
 
     private function setTranMode(string $tranMode): void {
-        // Validate if needed
+        $allowedModes = ['TRN', 'CHL', 'ACHL'];
+        if (!in_array($tranMode, $allowedModes)) {
+            throw new InvalidArgumentException('Invalid TranMode. Allowed values: TRN, CHL, ACHL.');
+        }
         $this->tranMode = $tranMode;
     }
 
     private function setOnBehalf(string $onBehalf): void {
-        // Validate if needed
+        // Check length limit if provided
+        if ($onBehalf !== null && strlen($onBehalf) > 120) {
+            throw new InvalidArgumentException('OnBehalf must be less than or equal to 120 characters.');
+        }
         $this->onBehalf = $onBehalf;
     }
 }

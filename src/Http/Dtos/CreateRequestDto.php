@@ -125,10 +125,12 @@ class CreateRequestDto {
 
     private function setCreditInformations(array $creditInformations): void {
         // Validate each item in the array as CreditInformation objects
+        $totalAmount = 0;
         foreach ($creditInformations as $creditInfo) {
             if (!$creditInfo instanceof CreditInformationDto) {
                 throw new InvalidArgumentException('All entries in CreditInformationDto must be instances of CreditInformationDto class.');
             }
+            $totalAmount += $creditInfo->getCrAmount();
             $this->creditInformations[] = [
             	"SerialNo" => $creditInfo->getSerialNo(),
 				"CrAccountOrChallanNo" => $creditInfo->getCrAccountOrChallanNo(),
@@ -137,6 +139,11 @@ class CreateRequestDto {
 				"Onbehalf" => $creditInfo->getOnBehalf()
             ];
         }
+
+        if($totalAmount != $this->requestTotalAmount){
+            throw new InvalidArgumentException('The RequestTotalAmount amount missmatch.');
+        }           
+
     }
 
     private function setSerialNo(int $serialNo): void {
