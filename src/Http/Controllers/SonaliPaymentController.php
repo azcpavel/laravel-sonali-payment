@@ -73,7 +73,10 @@ class SonaliPaymentController extends Controller
 		    }
 		}
 
-		return $this->checkout($createRequestDto);
+		$data = $this->checkout($createRequestDto);
+		if(isset($data->Status) && $data->Status == 200){
+			return redirect()->to($data->RedirectToGateway);
+		}
 	}
 
 	public function test_response(Request $request){
@@ -120,7 +123,7 @@ class SonaliPaymentController extends Controller
 		    $responseData = $response->getBody()->getContents();
 
 		    if($statusCode == 200){
-		    	return redirect()->to(json_decode($responseData)->RedirectToGateway);
+		    	return (object) json_decode($responseData);
 		    }else{
 		    	echo "Status Code: $statusCode\n";
 		    	echo "Response Data:\n$responseData\n";

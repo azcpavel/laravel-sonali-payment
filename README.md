@@ -110,7 +110,10 @@ class DemoController
             }
         }
 
-        return $sonaliPayment->checkout($createRequestDto);
+        $data = $sonaliPayment->checkout($createRequestDto);
+        if(isset($data->Status) && $data->Status == 200){
+            return redirect()->to($data->RedirectToGateway);
+        }
     }
 
     public function test_response(Request $request){
