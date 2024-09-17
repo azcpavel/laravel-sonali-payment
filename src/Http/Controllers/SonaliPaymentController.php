@@ -83,7 +83,7 @@ class SonaliPaymentController extends Controller
 		if($request->input('Mode') == 'success'){
 			$data = $this->validate_response($request);
 			Log::info('Response Data: ' . json_encode($data));
-			return $data;
+			return response()->json($data);
 		}else{
 			return "Failed Payment";
 		}
@@ -92,7 +92,7 @@ class SonaliPaymentController extends Controller
 	public function test_ipn(Request $request){
 		$data = $this->validate_ipn($request);
 		Log::info('IPN Data: ' . json_encode($data));
-		return $data;
+		return response()->json($data);
 	}
 
 	public function checkout(CreateRequestDto $createRequestDto){
