@@ -11,5 +11,7 @@ Route::group([
 
     Route::get('test',$controller_namespace.'SonaliPaymentController@test')->name($sonali_route_prifix.'.test');
     
-    Route::get('test-response',$controller_namespace.'SonaliPaymentController@test_response')->name($sonali_route_prifix.'.test_response');
+    Route::post('test-response',$controller_namespace.'SonaliPaymentController@test_response')->name($sonali_route_prifix.'.test_response');
+
+    Route::post('test-ipn',$controller_namespace.'SonaliPaymentController@test_ipn')->name($sonali_route_prifix.'.test_ipn');
 });
