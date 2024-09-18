@@ -111,7 +111,7 @@ class CreateRequestDto {
         // For simplicity, assuming it's a general validation
         $filteredString = preg_replace("/[^0-9]/", "", $customerContactNo);
         if (strlen($filteredString) < 11 || strlen($filteredString) > 15) {
-            throw new InvalidArgumentException('CustomerContactNo must be greater than or equal to 13 less than or equal to 15 characters.');
+            throw new InvalidArgumentException('CustomerContactNo must be greater than or equal to 11 less than or equal to 15 characters.');
         }
         $this->customerContactNo = $filteredString;
     }
