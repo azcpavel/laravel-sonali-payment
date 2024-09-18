@@ -109,10 +109,11 @@ class CreateRequestDto {
     private function setCustomerContactNo(string $customerContactNo): void {
         // Validate format based on Bangladeshi or international numbers
         // For simplicity, assuming it's a general validation
-        if (strlen($customerContactNo) > 15) {
-            throw new InvalidArgumentException('CustomerContactNo must be less than or equal to 15 characters.');
+        $filteredString = preg_replace("/[^0-9]/", "", $customerContactNo);
+        if (strlen($filteredString) < 11 || strlen($filteredString) > 15) {
+            throw new InvalidArgumentException('CustomerContactNo must be greater than or equal to 13 less than or equal to 15 characters.');
         }
-        $this->customerContactNo = $customerContactNo;
+        $this->customerContactNo = $filteredString;
     }
 
     private function setAllowDuplicateInvoiceNoDate(string $allowDuplicateInvoiceNoDate): void {
