@@ -110,7 +110,7 @@ class CreateRequestDto {
         // Validate format based on Bangladeshi or international numbers
         // For simplicity, assuming it's a general validation
         $filteredString = preg_replace("/[^0-9]/", "", $customerContactNo);
-        if (strlen($filteredString) < 7 || strlen($filteredString) > 15) {
+        if (strlen($filteredString) < 8 || strlen($filteredString) > 15) {
             throw new InvalidArgumentException('CustomerContactNo must be greater than or equal to 7 less than or equal to 15 characters.');
         }
         $this->customerContactNo = $filteredString;
