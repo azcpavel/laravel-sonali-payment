@@ -137,7 +137,7 @@ class SonaliPaymentController extends Controller
 		    		'ResponseData' => json_decode($responseData)
 		    	];
 
-		    	Log::info("Error: " . $e->getMessage() . "\n");
+		    	Log::info("Error: " . $statusCode. ',' .$responseData. "\n");
 		    }
 		} catch (RequestException $e) {
 		    // Handle request exception
