@@ -67,6 +67,7 @@ class SonaliPaymentController extends Controller
 
 		} catch (InvalidArgumentException $e) {
 			if (config('app.debug',false)) {
+				Log::info('Error: ' . $e->getMessage());
 		    	echo 'Error: ' . $e->getMessage();
 		    }else{
 		    	Log::info('Error: ' . $e->getMessage());
@@ -147,6 +148,7 @@ class SonaliPaymentController extends Controller
 		    if ($e->hasResponse() && config('app.debug',false)) {
 		        $statusCode = $e->getResponse()->getStatusCode();
 		        $responseBody = $e->getResponse()->getBody()->getContents();
+		        Log::info("Error: " . $statusCode. ',' .$responseData. "\n");
 		        echo "Error: $statusCode - $responseBody\n";exit();
 		    } else {
 		        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
@@ -191,6 +193,7 @@ class SonaliPaymentController extends Controller
 		    if ($e->hasResponse() && config('app.debug',false)) {
 		        $statusCode = $e->getResponse()->getStatusCode();
 		        $responseBody = $e->getResponse()->getBody()->getContents();
+		        Log::info("Error: " . $statusCode. ',' .$responseData. "\n");
 		        echo "Error: $statusCode - $responseBody\n";exit();
 		    } else {
 		        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
@@ -233,6 +236,7 @@ class SonaliPaymentController extends Controller
 		    if ($e->hasResponse() && config('app.debug',false)) {
 		        $statusCode = $e->getResponse()->getStatusCode();
 		        $responseBody = $e->getResponse()->getBody()->getContents();
+		        Log::info("Error: " . $statusCode. ',' .$responseData. "\n");
 		        echo "Error: $statusCode - $responseBody\n";exit();
 		    } else {
 		        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
