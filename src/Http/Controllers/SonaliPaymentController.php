@@ -132,10 +132,10 @@ class SonaliPaymentController extends Controller
 		    if($statusCode == 200){
 		    	return (object) json_decode($responseData);
 		    }else{
+		    	Log::info("Error: " . $statusCode. ',' .$responseData. "\n");
 		    	if(config('app.debug',false)){
 		    		echo "Error: $statusCode - $responseBody\n";exit();
-		    	}else{
-		    		Log::info("Error: " . $statusCode. ',' .$responseData. "\n");
+		    	}else{		    		
 		    		return (object) [
 			    		'Status' => $statusCode,
 			    		'ResponseData' => json_decode($responseData)
