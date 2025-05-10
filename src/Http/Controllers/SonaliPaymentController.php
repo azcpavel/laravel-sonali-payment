@@ -135,7 +135,7 @@ class SonaliPaymentController extends Controller
 		    }else{
 		    	Log::info("Error: " . $statusCode. ',' .$responseData. "\n");
 		    	if(config('app.debug',false)){
-		    		echo "Error: $statusCode - $responseBody\n";exit();
+		    		echo "Error: $statusCode - $responseData\n";exit();
 		    	}else{		    		
 		    		return (object) [
 			    		'Status' => $statusCode,
@@ -145,13 +145,15 @@ class SonaliPaymentController extends Controller
 		    }
 		} catch (RequestException $e) {
 		    // Handle request exception
-		    if ($e->hasResponse() && config('app.debug',false)) {
-		        $statusCode = $e->getResponse()->getStatusCode();
-		        $responseBody = $e->getResponse()->getBody()->getContents();
-		        Log::info("Error: " . $statusCode. ',' .$responseData. "\n");
-		        echo "Error: $statusCode - $responseBody\n";exit();
-		    } else {
-		        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
+		    if ($e->hasResponse()){
+		    	$statusCode = $e->getResponse()->getStatusCode();
+			    $responseBody = $e->getResponse()->getBody()->getContents();
+			    if (config('app.debug',false)) {
+			        Log::info("Error: " . $statusCode. ',' .$responseBody. "\n");
+			        echo "Error: $statusCode - $responseBody\n";exit();
+			    } else {
+			        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
+			    }
 		    }
 		}
 	}
@@ -190,13 +192,15 @@ class SonaliPaymentController extends Controller
 		    return json_decode($responseData);
 		} catch (RequestException $e) {
 		    // Handle request exception
-		    if ($e->hasResponse() && config('app.debug',false)) {
-		        $statusCode = $e->getResponse()->getStatusCode();
-		        $responseBody = $e->getResponse()->getBody()->getContents();
-		        Log::info("Error: " . $statusCode. ',' .$responseData. "\n");
-		        echo "Error: $statusCode - $responseBody\n";exit();
-		    } else {
-		        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
+		    if ($e->hasResponse()){
+		    	$statusCode = $e->getResponse()->getStatusCode();
+			    $responseBody = $e->getResponse()->getBody()->getContents();
+			    if (config('app.debug',false)) {
+			        Log::info("Error: " . $statusCode. ',' .$responseBody. "\n");
+			        echo "Error: $statusCode - $responseBody\n";exit();
+			    } else {
+			        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
+			    }
 		    }
 		}
 	}
@@ -233,14 +237,16 @@ class SonaliPaymentController extends Controller
 		    return json_decode($responseData);
 		} catch (RequestException $e) {
 		    // Handle request exception
-		    if ($e->hasResponse() && config('app.debug',false)) {
-		        $statusCode = $e->getResponse()->getStatusCode();
-		        $responseBody = $e->getResponse()->getBody()->getContents();
-		        Log::info("Error: " . $statusCode. ',' .$responseData. "\n");
-		        echo "Error: $statusCode - $responseBody\n";exit();
-		    } else {
-		        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
-		    }
+		    if ($e->hasResponse()){
+		    	$statusCode = $e->getResponse()->getStatusCode();
+			    $responseBody = $e->getResponse()->getBody()->getContents();
+			    if (config('app.debug',false)) {
+			        Log::info("Error: " . $statusCode. ',' .$responseBody. "\n");
+			        echo "Error: $statusCode - $responseBody\n";exit();
+			    } else {
+			        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
+			    }
+		    }		    
 		}
 	}
 }
