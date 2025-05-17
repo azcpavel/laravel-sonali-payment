@@ -124,7 +124,7 @@ class SonaliPaymentController extends Controller
 		$responseData = null;
 		try {
 		    $response = $client->post($this->base_end_point.'/api/v3/spgservice/CreatePaymentRequest', [
-		        'verify' => false,
+		        'verify' => $this->test_mode,
 		        'headers' => $headers,
 		        'body' => $jsonPayload,
 		    ]);
@@ -195,7 +195,7 @@ class SonaliPaymentController extends Controller
 		$responseData = null;
 		try {
 		    $response = $client->post($this->base_end_point.'/api/v3/spgservice/TransactionVerificationWithToken', [
-		        'verify' => false,
+		        'verify' => $this->test_mode,
 		        'headers' => $headers,
 		        'body' => $jsonPayload,
 		    ]);
@@ -252,7 +252,7 @@ class SonaliPaymentController extends Controller
 		$responseData = null;
 		try {
 		    $response = $client->post($this->base_end_point.'/api/v3/spgservice/IPNCheck', [
-		        'verify' => false,
+		        'verify' => $this->test_mode,
 		        'headers' => $headers,
 		        'body' => $jsonPayload,
 		    ]);
