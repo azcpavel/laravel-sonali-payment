@@ -120,6 +120,8 @@ class SonaliPaymentController extends Controller
 		]);
 
 		// Send POST request
+		$statusCode = null;
+		$responseData = null;
 		try {
 		    $response = $client->post($this->base_end_point.'/api/v3/spgservice/CreatePaymentRequest', [
 		        'headers' => $headers,
@@ -179,6 +181,8 @@ class SonaliPaymentController extends Controller
 		]);
 
 		// Send POST request
+		$statusCode = null;
+		$responseData = null;
 		try {
 		    $response = $client->post($this->base_end_point.'/api/v3/spgservice/TransactionVerificationWithToken', [
 		        'headers' => $headers,
@@ -224,6 +228,8 @@ class SonaliPaymentController extends Controller
 		$jsonPayload = json_encode($request->all());
 
 		// Send POST request
+		$statusCode = null;
+		$responseData = null;
 		try {
 		    $response = $client->post($this->base_end_point.'/api/v3/spgservice/IPNCheck', [
 		        'headers' => $headers,
