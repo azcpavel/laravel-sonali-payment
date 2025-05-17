@@ -124,6 +124,7 @@ class SonaliPaymentController extends Controller
 		$responseData = null;
 		try {
 		    $response = $client->post($this->base_end_point.'/api/v3/spgservice/CreatePaymentRequest', [
+		        'verify' => false,
 		        'headers' => $headers,
 		        'body' => $jsonPayload,
 		    ]);
@@ -141,7 +142,7 @@ class SonaliPaymentController extends Controller
 		    	}else{		    		
 		    		return (object) [
 			    		'Status' => $statusCode,
-			    		'ResponseData' => json_decode($responseData)
+			    		'Message' => json_decode($responseData)
 			    	];
 		    	}		    	
 		    }
@@ -155,7 +156,16 @@ class SonaliPaymentController extends Controller
 			        echo "Error: $statusCode - $responseBody\n";exit();
 			    } else {
 			        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
+			        return (object) [
+			    		'Status' => 400,
+			    		'Message' => $e->getMessage()
+			    	];
 			    }
+		    }else{
+		    	return (object) [
+		    		'Status' => 400,
+		    		'Message' => $e->getMessage()
+		    	];
 		    }
 		}
 	}
@@ -185,6 +195,7 @@ class SonaliPaymentController extends Controller
 		$responseData = null;
 		try {
 		    $response = $client->post($this->base_end_point.'/api/v3/spgservice/TransactionVerificationWithToken', [
+		        'verify' => false,
 		        'headers' => $headers,
 		        'body' => $jsonPayload,
 		    ]);
@@ -204,7 +215,16 @@ class SonaliPaymentController extends Controller
 			        echo "Error: $statusCode - $responseBody\n";exit();
 			    } else {
 			        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
+			        return (object) [
+			    		'Status' => 400,
+			    		'Message' => $e->getMessage()
+			    	];
 			    }
+		    }else{
+		    	return (object) [
+		    		'Status' => 400,
+		    		'Message' => $e->getMessage()
+		    	];
 		    }
 		}
 	}
@@ -232,6 +252,7 @@ class SonaliPaymentController extends Controller
 		$responseData = null;
 		try {
 		    $response = $client->post($this->base_end_point.'/api/v3/spgservice/IPNCheck', [
+		        'verify' => false,
 		        'headers' => $headers,
 		        'body' => $jsonPayload,
 		    ]);
@@ -251,7 +272,16 @@ class SonaliPaymentController extends Controller
 			        echo "Error: $statusCode - $responseBody\n";exit();
 			    } else {
 			        Log::info("Error: " . $e->getMessage() . "\n$statusCode - $responseBody\n");
+			        return (object) [
+			    		'Status' => 400,
+			    		'Message' => $e->getMessage()
+			    	];
 			    }
+		    }else{
+		    	return (object) [
+		    		'Status' => 400,
+		    		'Message' => $e->getMessage()
+		    	];
 		    }		    
 		}
 	}
